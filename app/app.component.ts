@@ -1,21 +1,25 @@
 import { Component } from "@angular/core";
-
+import {TestService} from "test-angular-2-module"
 @Component({
     selector: "my-app",
     templateUrl: "app.component.html",
 })
 export class AppComponent {
-    public counter: number = 16;
+
+
+    constructor (private testService: TestService) {
+
+    }
 
     public get message(): string {
-        if (this.counter > 0) {
-            return this.counter + " taps left";
+        if (this.testService.getCounter() > 0) {
+            return this.testService.getCounter() + " taps left";
         } else {
             return "Hoorraaay! \nYou are ready to start building!";
         }
     }
     
     public onTap() {
-        this.counter--;
+        this.testService.decrease();
     }
 }
