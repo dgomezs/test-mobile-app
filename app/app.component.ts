@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
-import {TestService} from "test-angular-2-module"
+import {Component} from "@angular/core";
+import {Http, RequestOptions,Headers} from "@angular/http";
+import {TestService} from "test-angular-2-module";
 @Component({
     selector: "my-app",
     templateUrl: "app.component.html",
@@ -7,7 +8,7 @@ import {TestService} from "test-angular-2-module"
 export class AppComponent {
 
 
-    constructor (private testService: TestService) {
+    constructor(private testService: TestService, private http: Http) {
 
     }
 
@@ -18,8 +19,23 @@ export class AppComponent {
             return "Hoorraaay! \nYou are ready to start building!";
         }
     }
-    
+
     public onTap() {
         this.testService.decrease();
+
+        let fd = new FormData(),
+            options = new RequestOptions();
+
+        options.headers = new Headers();
+        options.headers.append("Content-type", "application/x-www-form-urlencoded");
+        fd.append("name", "David");
+
+        this.http.post("https://postman-echo.com/post", fd).subscribe((r) => {
+            alert("Form submitted with values " + JSON.stringify(r.json().form));
+        }, (error) => {
+            alert("Error in form " + error.json());
+
+        });
+
     }
 }
