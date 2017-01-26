@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Http, RequestOptions,Headers} from "@angular/http";
+import {Http} from "@angular/http";
 import {TestService} from "test-angular-2-module";
 @Component({
     selector: "my-app",
@@ -23,16 +23,17 @@ export class AppComponent {
     public onTap() {
         this.testService.decrease();
 
-        let fd = new FormData(),
-            options = new RequestOptions();
+        let fd = new FormData();
 
-        options.headers = new Headers();
-        options.headers.append("Content-type", "application/x-www-form-urlencoded");
         fd.append("name", "David");
 
-        this.http.post("https://postman-echo.com/post", fd).subscribe((r) => {
+        console.log("submitting form");
+
+        this.http.post("https://httpbin.org/post", fd).subscribe((r) => {
+            console.error("Response " +  JSON.stringify(r.json()));
             alert("Form submitted with values " + JSON.stringify(r.json().form));
         }, (error) => {
+            console.error("Response " + error.json());
             alert("Error in form " + error.json());
 
         });
