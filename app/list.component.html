@@ -1,0 +1,34 @@
+<GridLayout rows="auto, *" tkExampleTitle tkToggleNavButton *ngIf="loaded">
+
+    <RadListView
+            loadOnDemandMode="Manual"
+            (loadMoreDataRequested)="onLoadMoreGiftIdeas($event)"
+            row="1"
+            [items]="countries">
+
+        <ng-template tkListItemTemplate let-item="item">
+            <Button [text]="item" (tap)="goToPage()"></Button>
+        </ng-template>
+
+
+        <ng-template tkListViewHeader>
+            <StackLayout orientation="vertical">
+                <my-header></my-header>
+            </StackLayout>
+        </ng-template>
+
+
+        <ng-template tkListViewFooter>
+            <StackLayout orientation="vertical">
+                <my-footer></my-footer>
+            </StackLayout>
+        </ng-template>
+
+
+        <ListViewGridLayout tkListViewLayout
+                            scrollDirection="Vertical"></ListViewGridLayout>
+
+
+    </RadListView>
+
+</GridLayout>
