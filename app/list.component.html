@@ -7,7 +7,9 @@
             [items]="countries">
 
         <ng-template tkListItemTemplate let-item="item">
+            <StackLayout width="200">
             <Button [text]="item" (tap)="goToPage()"></Button>
+            </StackLayout>
         </ng-template>
 
 

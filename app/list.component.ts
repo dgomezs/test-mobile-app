@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
 
     countries: ObservableArray<string>;
     loaded: boolean;
+    footerLoaded: boolean;
     listView: RadListView;
 
     constructor(private page: Page,
@@ -49,8 +50,7 @@ export class ListComponent implements OnInit {
     ngOnInit() {
 
         this.loaded = true;
-       // this.page.on("navigatedTo", this.reload, this);
-
+        this.footerLoaded = true;
     }
 
     public get message(): string {
