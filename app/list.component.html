@@ -22,7 +22,7 @@
 
         <ng-template tkListViewFooter>
             <StackLayout orientation="vertical">
-                <my-footer></my-footer>
+                <my-footer *ngIf="footerLoaded"></my-footer>
             </StackLayout>
         </ng-template>
 
